@@ -5,3 +5,5 @@
 * Figured Boost was the way to go
 * Tried boost::program_options and failed..
 * Tried *linking* with boost. That helped! ;)
+* Trying to get futures/promises to work. Failing..
+* #include<future> helps. I iz n00b, n0t h4x0rz

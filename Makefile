@@ -4,7 +4,7 @@ LD = clang
 target = ow
 depends = main.o
 
-CXXFLAGS = -Wall -g
+CXXFLAGS = -Wall -g -std=c++11
 LIBS = -lboost_program_options-mt -lc++
 
 $(target):$(depends)
