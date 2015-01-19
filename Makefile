@@ -4,7 +4,7 @@ target = ow
 depends = main.o
 
 CXXFLAGS = -Wall -g
-LIBS = -lpthread
+LIBS = -lboost_program_options-mt
 
 $(target):$(depends)
 	@echo [LD] $(target)
