@@ -7,3 +7,6 @@
 * Tried *linking* with boost. That helped! ;)
 * Trying to get futures/promises to work. Failing..
 * #include<future> helps. I iz n00b, n0t h4x0rz
+* Trying to think about threads+promises+futures, then discovering std::async, could that be nice?
+* Yes, it seems nice so far (??) :)
+* 

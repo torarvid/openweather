@@ -1,4 +1,5 @@
 #include <iostream>
+#include <future>
 
 #include "boost/program_options.hpp"
 
@@ -27,6 +28,28 @@ po::variables_map parse_args(int argc, char **argv) {
     return vm;
 }
 
+class WeatherData {
+public:
+    WeatherData(string content) {
+        this->content = content;
+    }
+
+    string description() {
+        return content;
+    }
+
+private:
+    string content;
+};
+
+WeatherData *get_data(int i) {
+    int s = 500000 + rand() % 2000000;
+    stringstream ss;
+    usleep(s);
+    ss << "hey " << s;
+    return new WeatherData(ss.str());
+}
+
 int main(int argc, char **argv) {
     po::variables_map vm = parse_args(argc, argv);
     if (vm.count("help")) {
@@ -42,5 +65,19 @@ int main(int argc, char **argv) {
         cout << "All righty, we'll sort by temperature instead of location" << endl;
     }
 
+    vector<future<WeatherData*> > futures;
+    futures.push_back(async(launch::async, get_data, 1));
+    futures.push_back(async(launch::async, get_data, 2));
+    futures.push_back(async(launch::async, get_data, 3));
+    futures.push_back(async(launch::async, get_data, 4));
+
+    vector<WeatherData> data;
+    for (auto &f: futures) {
+        auto wd = *f.get();
+        data.push_back(wd);
+        cout << wd.description() << endl;
+    }
+
+    cout << data.size() << endl;
     return 0;
 }
