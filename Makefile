@@ -5,7 +5,7 @@ target = ow
 depends = main.o
 
 CXXFLAGS = -Wall -g -std=c++11
-LIBS = -lboost_program_options-mt -lc++
+LIBS = -lboost_program_options-mt -lboost_system-mt -lc++
 
 $(target):$(depends)
 	@echo [LD] $(target)
